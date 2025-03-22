@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fishing For Love</title>
+<script>
+import math from './math.js';
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  } // implemtns num generator 
+  //function randomNumber() {
+  //return Math.floor(Math.random() * (70 - 18 + 1)) + 18;
+// f}
+function ranemail(){
+	math.
+}
+
+  </script>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -51,7 +64,7 @@
     <div class="info">
         <h2>John Doe</h2>
 		<p>{{ranemail}}</p>
-        <p>Age: {{Age}}</p>
+        <p>Age: Age</p>
         <p>Description: "I am very trust worthy I swear"</p>
     </div>
 </div>
@@ -60,8 +73,8 @@
 
 <script>
 const profiles = [
-    { name: "John Doe", age: {{Age}}, description: "Lorem ipsum dolor sit amet", image: "profile1.jpg" },
-    { name: "Jane Smith", age: {{Age}} , description: "Consectetur adipiscing elit", image: "profile2.jpg" },
+    { name: "John Doe", age: {{Age}}, description: "Trust me I'm a real fish", image: "fish2.aseprite" },
+    { name: "Jane Smith", age: {{Age}} , description: "I'm a real fish", image: "fish1.aseprite" },
     // Add more dummy profiles here
 ];
 
@@ -81,7 +94,11 @@ function showProfile(index) {
 }
 
 function dislikeProfile() {
-    currentProfileIndex++;
+	// Implement your dislike logic here
+	Age = randomNumber();
+    var randomNumber = Math.random(); // random num generator i thinky 
+	ranemail() = 
+    currentProfileIndex++; 
     if (currentProfileIndex < profiles.length) {
         showProfile(currentProfileIndex);
     } else {
@@ -90,8 +107,8 @@ function dislikeProfile() {
 }
 
 function likeProfile() {
-    // Implement your like logic here
     alert("Liked!");
+	Age = randomNumber();
     currentProfileIndex++;
     if (currentProfileIndex < profiles.length) {
         showProfile(currentProfileIndex);
