@@ -2,7 +2,7 @@ import flask
 from flask import render_template
 import requests
 
-
+emails = {"uah.college@gmail.com": True, "Totallyfake@gmail.com": False, }
 app = flask.Flask(__name__)
 
 @app.route("/")
