@@ -8,16 +8,18 @@
     body {
         font-family: Arial, sans-serif;
         text-align: center;
+        background-color: rgba(255, 255, 255, 0.76);
+        color: white;
     }
     .card {
         width: 300px;
-        height: 400px;
-        border: 1px solid #ff0000;
+        height: 500px;
+        border: 2px solid #640000;
         border-radius: 10px;
         margin: 20px auto;
         overflow: hidden;
         position: relative;
-        background-color: #ffffff87;
+        background-color: #000000ea;
     }
     .card img {
         width: 100%;
@@ -59,8 +61,9 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateRandomEmail() {
-    const providers = ["gmail.com", "yahoo.com", "outlook.com", "uah.edu"];
+function generateRandomEmail(provider) {
+    const niceEmails = ["lovely", "kind", "sweet"];
+    const meanEmails = ["hater", "grumpy", "rude"];
     const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
     let username = "";
     const usernameLength = randomNumber(5, 15);
@@ -69,17 +72,19 @@ function generateRandomEmail() {
         username += characters.charAt(Math.floor(Math.random() * characters.length));
     }
 
-    const provider = providers[Math.floor(Math.random() * providers.length)];
-    return `${username}@${provider}`;
+    const emailList = provider === "uah.edu" ? meanEmails : niceEmails;
+    const randomEmail = `${username}@${provider}`;
+    
+    return randomEmail;
 }
 
 const profiles = [
-    { name: "John Doe", age: 20, description: "Trust me I'm a real fish", image: "fish2.aseprite" },
-    { name: "Jane Smith", age: 25, description: "I'm a real fish", image: "fish1.aseprite" },
-    { name: "Kevin Gasga", age: 30, description: "Im a real kevin", image: "fish3.aseprite"},
-    { name: "Jaden mare", age: 21, description: "Trust me I'm a real fish", image: "fish2.aseprite" },
-    { name: "Bill Joseph", age: 28, description: "I'm a real fish", image: "fish1.aseprite" },
-    { name: "Noah Parker", age: 46, description: "Im a real kevin", image: "fish3.aseprite"},
+    { name: "John Doe", description: "Trust me I'm a real fish with email: ", image: "fish2.aseprite", provider: "gmail.com" },
+    { name: "Jane Smith", description: "I'm a real fish with email: ", image: "fish1.aseprite", provider: "yahoo.com" },
+    { name: "Kevin Gasga", description: "Im a real kevin with email: ", image: "fish3.aseprite", provider: "uah.edu" },
+    { name: "Jaden mare", description: "Trust me I'm a real fish with email: ", image: "fish2.aseprite", provider: "gmail.com" },
+    { name: "Bill Joseph", description: "I'm a real fish with email: ", image: "fish1.aseprite", provider: "yahoo.com" },
+    { name: "Noah Parker", description: "Im a real kevin with email: ", image: "fish3.aseprite", provider: "uah.edu" },
     // Add more dummy profiles here
 ];
 
@@ -89,19 +94,23 @@ const infoContainer = document.querySelector(".card .info"); // Get the info con
 
 function showProfile(index) {
     const profile = profiles[index];
-      const randomEmail = generateRandomEmail(); // Generate the email *here*
+    const randomEmail = generateRandomEmail(profile.provider);
 
     infoContainer.innerHTML = `
         <h2>${profile.name}</h2>
-        <p id="email">${randomEmail}</p>
-        <p>Age: <span id="age">${profile.age}</span></p>
-        <p>Description: ${profile.description}</p>
+        <p>Email: ${randomEmail}</p>
+        <p>Age: <span id="age">${randomNumber(18, 60)}</span></p>
+        <p>Description: ${profile.description}${profile.provider === "uah.edu" ? "mean" : "nice"} email</p>
     `;
     // Set the image separately (more reliable)
     profileCard.innerHTML = `<img src="${profile.image}" alt="Profile Picture">` + infoContainer.outerHTML;
 }
 
 function dislikeProfile() {
+    const currentProfile = profiles[currentProfileIndex];
+    if (currentProfile.provider !== "uah.edu" && currentProfile.description.includes("mean")) {
+        alert("Oops! You disliked a profile with a mean email address.");
+    }
     currentProfileIndex++;
     if (currentProfileIndex >= profiles.length) {
         currentProfileIndex = 0; // Wrap around to the beginning
@@ -110,6 +119,10 @@ function dislikeProfile() {
 }
 
 function likeProfile() {
+    const currentProfile = profiles[currentProfileIndex];
+    if (currentProfile.provider === "uah.edu" && currentProfile.description.includes("nice")) {
+        alert("Oops! You liked a profile with a mean email address.");
+    }
     alert("Liked!"); // Placeholder - Replace with actual like functionality
     currentProfileIndex++;
     if (currentProfileIndex >= profiles.length) {
