@@ -1,6 +1,5 @@
 import flask
 from flask import render_template
-import requests
 import random as rand
 
 
