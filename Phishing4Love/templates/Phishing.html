@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fishing For Love</title>
@@ -8,7 +8,7 @@
     body {
         font-family: Arial, sans-serif;
         text-align: center;
-        background-color: rgba(255, 255, 255, 0.76);
+        background-color: rgba(0, 0, 0, 0.76);
         color: rgb(0, 0, 0);
     }
     .card {
@@ -82,12 +82,12 @@ const profiles = [
     { name: "John Doe", description: "Trust me I'm a real fish with email: ", image: "fish2.aseprite", provider: "gmail.com" },
     { name: "Jane Smith", description: "I'm a real fish with email: ", image: "fish1.aseprite", provider: "yahoo.com" },
     { name: "Kevin Gasga", description: "Im a real kevin with email: ", image: "fish3.aseprite", provider: "uah.edu" },
-    { name: "Jaden mare", description: "Trust me I'm a real fish with email: ", image: "fish2.aseprite", provider: "gmail.com" },
+    { name: "Jaden Mare", description: "Trust me I'm a real fish with email: ", image: "fish2.aseprite", provider: "gmail.com" },
     { name: "Bill Joseph", description: "I'm a real fish with email: ", image: "fish1.aseprite", provider: "yahoo.com" },
     { name: "Noah Parker", description: "Im a real kevin with email: ", image: "fish3.aseprite", provider: "uah.edu" },
     // Add more dummy profiles here
 ];
-
+nice = ["lovely", "kind", "sweet", "nice", "cool", "amazing", "awesome", "great", "brilliant"];
 let currentProfileIndex = 0;
 const profileCard = document.getElementById("profileCard");
 const infoContainer = document.querySelector(".card .info"); // Get the info container
@@ -108,8 +108,8 @@ function showProfile(index) {
 
 function dislikeProfile() {
     const currentProfile = profiles[currentProfileIndex];
-    if (currentProfile.provider !== "uah.edu" && currentProfile.description.includes("mean")) {
-        alert("Oops! You disliked a profile with a mean email address.");
+    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(nice)) {
+        alert("Oops! You disliked a profile with a nice email address.");
     }
     currentProfileIndex++;
     if (currentProfileIndex >= profiles.length) {
@@ -121,7 +121,7 @@ function dislikeProfile() {
 function likeProfile() {
     const currentProfile = profiles[currentProfileIndex];
     if (currentProfile.provider === "uah.edu" && currentProfile.description.includes("nice")) {
-        alert("Oops! You liked a profile with a mean email address.");
+        alert("Oops! You liked a profile with a phishing email address.");
     }
     alert("Liked!"); // Placeholder - Replace with actual like functionality
     currentProfileIndex++;
