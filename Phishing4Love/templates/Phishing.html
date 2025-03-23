@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -50,7 +50,7 @@
 </head>
 <body>
 <div class="card" id="profileCard">
-    <img src="fish.png" alt="Profile Picture">
+    <img src="Phishing4Love/static/images/fish3.png" alt="Profile Picture">
     <div class="info">
     </div>
 </div>
@@ -73,22 +73,22 @@ function generateRandomEmail(provider) {
         username += characters.charAt(Math.floor(Math.random() * characters.length));
     }
 
-    const emailList = provider === "uah.edu" ? meanEmails : niceEmails;
+    const emailList = provider == "uah.edu" ? meanEmails : niceEmails;
     const randomEmail = `${username}@${provider}`;
     
     return randomEmail;
 }
 
 const profiles = [
-    { name: "John Doe", description: "Trust me I'm a real fish with email: ", image: "fish.png", provider: "gmail.com" },
-    { name: "Jane Smith", description: "I'm a real fish with email: ", image: "fish2.png", provider: "yahoo.com" },
-    { name: "Kevin Gasga", description: "Im a real kevin with email: ", image: "fish3.png", provider: "uah.edu" },
-    { name: "Jaden mare", description: "Trust me I'm a real fish with email: ", image: "scaryfish.png", provider: "gmail.com" },
-    { name: "Bill Joseph", description: "I'm a real fish with email: ", image: "fish.png", provider: "yahoo.com" },
-    { name: "Noah Parker", description: "Im a real kevin with email: ", image: "fish3.png", provider: "uah.edu" },
+    { name: "John Doe", description: "Trust me I'm mean real fish with email: ", image: "static/images/fish3.png", provider: "gmail.com" },
+    { name: "Jane Smith", description: "I'm a nice fish with email: ", image: "static/images/fish2.png", provider: "yahoo.com" },
+    { name: "Kevin Gasga", description: "Im a nice kevin with email: ", image: "static/images/fish1.png", provider: "uah.edu" },
+    { name: "Jaden mare", description: "Trust me I'm a mean fish with email: ", image: "static/images/fish1.png", provider: "gmail.com" },
+    { name: "Bill Joseph", description: "I'm a nice fish with email: ", image: "static/images/fish3.png", provider: "yahoo.com" },
+    { name: "Noah Parker", description: "Im a mean1 kevin with email: ", image: "static/images/fish2.png", provider: "uah.edu" },
 ];
-nice = ["lovely", "kind", "sweet", "nice", "cool", "amazing", "awesome", "great", "brilliant"];
-mean = ["mean", "hater", "now", "help", "sad", "hate"];
+const nice = ["lovely", "kind", "sweet", "nice", "cool", "amazing", "awesome", "great", "brilliant"];
+const mean = ["mean", "hater", "now", "help", "sad", "hate"];
 let currentProfileIndex = 0;
 const profileCard = document.getElementById("profileCard");
 const infoContainer = document.querySelector(".card .info"); // Get the info container
@@ -101,7 +101,7 @@ function showProfile(index) {
         <h2>${profile.name}</h2>
         <p>Email: ${randomEmail}</p>
         <p>Age: <span id="age">${randomNumber(18, 60)}</span></p>
-        <p>Description: ${profile.description}${profile.provider === "uah.edu" ? "mean" : "nice"} email</p>
+        <p>Description: ${profile.description}${profile.provider == "uah.edu" ? "mean" : "nice"} email</p>
     `;
     // Set the image separately (more reliable)
     profileCard.innerHTML = `<img src="${profile.image}" alt="Profile Picture">` + infoContainer.outerHTML;
@@ -109,8 +109,10 @@ function showProfile(index) {
 
 function dislikeProfile() {
     const currentProfile = profiles[currentProfileIndex];
-    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(nice)) {
-        alert("Oops! You disliked a profile with a nice email address.");
+    if (currentProfile.provider == "uah.edu" && currentProfile.description.includes(mean)) {
+        alert("You disliked a profile with a phishing email address.");
+    } else {
+        alert("You disliked an innocent fish");
     }
     currentProfileIndex++;
     if (currentProfileIndex >= profiles.length) {
@@ -121,18 +123,17 @@ function dislikeProfile() {
 
 function likeProfile() {
     const currentProfile = profiles[currentProfileIndex];
-    if (currentProfile.provider === "uah.edu" && currentProfile.description.includes("nice")) {
+    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(nice)) {
         alert("Oops! You liked a profile with a phishing email address.");
+    } else {
+        alert("You liked an innocent fish");
     }
-    alert("Liked!"); // Placeholder - Replace with actual like functionality
     currentProfileIndex++;
     if (currentProfileIndex >= profiles.length) {
         currentProfileIndex = 0; // Wrap around to the beginning
     }
     showProfile(currentProfileIndex);
 }
-
-showProfile(currentProfileIndex); // Show the first profile initially
 </script>
 </body>
 </html>
