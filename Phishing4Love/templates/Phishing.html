@@ -50,7 +50,7 @@
 </head>
 <body>
 <div class="card" id="profileCard">
-    <img src="Phishing4Love/static/images/fish3.png" alt="Profile Picture">
+    <img src="static/images/fish1.png" alt="Profile Picture">
     <div class="info">
     </div>
 </div>
@@ -63,8 +63,10 @@ function randomNumber(min, max) {
 }
 
 function generateRandomEmail(provider) {
-    const niceEmails = ["lovely", "kind", "sweet"];
-    const meanEmails = ["hater", "grumpy", "rude"];
+
+    const nice = ["lovely", "kind", "sweet", "nice", "cool", "amazing", "awesome", "great", "brilliant", "charming", "kidding", "loving", "love"];
+    const mean = ["mean", "hater", "cry", "help", "sad", "hate", "important"];
+
     const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
     let username = "";
     const usernameLength = randomNumber(5, 15);
@@ -73,7 +75,7 @@ function generateRandomEmail(provider) {
         username += characters.charAt(Math.floor(Math.random() * characters.length));
     }
 
-    const emailList = provider == "uah.edu" ? meanEmails : niceEmails;
+    const emailList = provider == "uah.edu" ? mean : nice;
     const randomEmail = `${username}@${provider}`;
     
     return randomEmail;
@@ -88,9 +90,6 @@ const profiles = [
     { name: "Bill Joseph", description: "Ayo bro what is up? it has been a while since we talked ", image: "static/images/fish3.png", provider: "yahoo.com" },
     { name: "Noah Parker", description: "Hello I am a nice fish with a computer, trust me, I won't steal your information ", image: "static/images/fish2.png", provider: "uah.edu" },
 ];
-
-const nice = ["lovely", "kind", "sweet", "nice", "cool", "amazing", "awesome", "great", "brilliant"];
-const mean = ["mean", "hater", "now", "help", "sad", "hate"];
 
 let currentProfileIndex = 0;
 const profileCard = document.getElementById("profileCard");
@@ -112,7 +111,7 @@ function showProfile(index) {
 
 function dislikeProfile() {
     const currentProfile = profiles[currentProfileIndex];
-    if (currentProfile.provider == "uah.edu" && currentProfile.description.includes(mean)) {
+    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(mean)) {
         alert("You disliked a profile with a phishing email address.");
     } else {
         alert("You disliked an innocent fish");
@@ -126,7 +125,7 @@ function dislikeProfile() {
 
 function likeProfile() {
     const currentProfile = profiles[currentProfileIndex];
-    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(nice)) {
+    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(mean)) {
         alert("Oops! You liked a profile with a phishing email address.");
     } else {
         alert("You liked an innocent fish");

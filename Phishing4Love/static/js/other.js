@@ -23,11 +23,11 @@ class PhishingGame {
                 body: "You've been selected as our lucky winner! Claim your prize by providing your personal details.",
                 isPhishing: true,
                 image: "https://example.com/fish3.png"
-			subject: 'Hey twin jit this aint phising ',
-			sender: "bleh@gmail.com"
-			body: "youve "
+			, subject: 'Hey twin jit this aint phising ',
+		    sender: "bleh@gmail.com",
+			body: "youve ",
 
-				isPhising: true,
+				isPhishing: true,
             }
         ];
 
