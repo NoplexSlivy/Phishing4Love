@@ -63,7 +63,6 @@ function randomNumber(min, max) {
 }
 
 function generateRandomEmail(provider) {
-
     const nice = ["lovely", "kind", "sweet", "nice", "cool", "amazing", "awesome", "great", "brilliant", "charming", "kidding", "loving", "love"];
     const mean = ["mean", "hater", "cry", "help", "sad", "hate", "important"];
 
@@ -77,7 +76,7 @@ function generateRandomEmail(provider) {
 
     const emailList = provider == "uah.edu" ? mean : nice;
     const randomEmail = `${username}@${provider}`;
-    
+
     return randomEmail;
 }
 
@@ -93,7 +92,7 @@ const profiles = [
 
 let currentProfileIndex = 0;
 const profileCard = document.getElementById("profileCard");
-const infoContainer = document.querySelector(".card .info"); // Get the info container
+const infoContainer = document.querySelector(".card .info");
 
 function showProfile(index) {
     const profile = profiles[index];
@@ -105,37 +104,40 @@ function showProfile(index) {
         <p>Age: <span id="age">${randomNumber(18, 60)}</span></p>
         <p>Description: ${profile.description}${profile.provider == "uah.edu" ? "mean" : "nice"} email</p>
     `;
-    // Set the image separately (more reliable)
     profileCard.innerHTML = `<img src="${profile.image}" alt="Profile Picture">` + infoContainer.outerHTML;
 }
 
 function dislikeProfile() {
     const currentProfile = profiles[currentProfileIndex];
-    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(mean)) {
+    const mean = ["mean", "hater", "cry", "help", "sad", "hate", "important"];
+    if (currentProfile.provider != "uah.edu" && mean.some(word => currentProfile.description.includes(word))) {
         alert("You disliked a profile with a phishing email address.");
     } else {
         alert("You disliked an innocent fish");
     }
     currentProfileIndex++;
     if (currentProfileIndex >= profiles.length) {
-        currentProfileIndex = 0; // Wrap around to the beginning
+        currentProfileIndex = 0; 
     }
     showProfile(currentProfileIndex);
 }
 
 function likeProfile() {
     const currentProfile = profiles[currentProfileIndex];
-    if (currentProfile.provider != "uah.edu" && currentProfile.description.includes(mean)) {
+    const mean = ["mean", "hater", "cry", "help", "sad", "hate", "important"];
+    if (currentProfile.provider != "uah.edu" && mean.some(word => currentProfile.description.includes(word))) {
         alert("Oops! You liked a profile with a phishing email address.");
     } else {
         alert("You liked an innocent fish");
     }
     currentProfileIndex++;
     if (currentProfileIndex >= profiles.length) {
-        currentProfileIndex = 0; // Wrap around to the beginning
+        currentProfileIndex = 0;
     }
     showProfile(currentProfileIndex);
 }
+
+showProfile(currentProfileIndex);
 </script>
 </body>
 </html>
